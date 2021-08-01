@@ -91,8 +91,8 @@ const RenderBooks = () => {
             />
             <View style={styles.bookContainer}>
                 <FlatGrid
-                    itemDimension={110}
-                    spacing={1}
+                    itemDimension={115}
+                    spacing={3}
                     data={bookListing}
                     keyExtractor={(book) => book.id.toString()}
                     renderItem={({ item }) => (
@@ -109,7 +109,7 @@ const RenderBooks = () => {
 };
 const styles = StyleSheet.create({
     bookContainer: {
-        marginLeft: 18,
+        marginLeft: 15,
         marginTop: 15,
     },
     containerStyles: {

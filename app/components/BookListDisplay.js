@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
     },
     container: {
         flexDirection: "row",
-        marginLeft: 5,
-        marginRight: 5,
+        // marginLeft: 5,
+        // marginRight: 5,
     },
 });
 
