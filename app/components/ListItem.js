@@ -1,21 +1,35 @@
 import React from "react";
-import { View, Image, StyleSheet } from "react-native";
+import { View, Image, StyleSheet, TouchableHighlight } from "react-native";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 import AppText from "./AppText";
 import colors from "../config/colors";
+import Icon from "./Icon";
 
-const ListItem = ({ style, image, title, subtitle, IconComponent }) => {
+const ListItem = ({
+    style,
+    image,
+    title,
+    subtitle,
+    IconComponent,
+    onPress,
+}) => {
     return (
-        <View style={styles.container}>
-            {IconComponent}
-            {image && <Image style={styles.image} source={image} />}
-            <View style={styles.profileDetails}>
-                <AppText style={[styles.title, style]}>{title}</AppText>
-                {subtitle && (
-                    <AppText style={styles.subtitle}>{subtitle}</AppText>
-                )}
+        <TouchableHighlight
+            underlayColor={colors.medium}
+            onPress={() => console.log("pressed")}
+        >
+            <View style={styles.container}>
+                {IconComponent}
+                {image && <Image style={styles.image} source={image} />}
+                <View style={styles.profileDetails}>
+                    <AppText style={[styles.title, style]}>{title}</AppText>
+                    {subtitle && (
+                        <AppText style={styles.subtitle}>{subtitle}</AppText>
+                    )}
+                </View>
             </View>
-        </View>
+        </TouchableHighlight>
     );
 };
 const styles = StyleSheet.create({

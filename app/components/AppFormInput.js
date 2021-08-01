@@ -9,6 +9,7 @@ const AppFormInput = ({
     iconEnd,
     containerStyles,
     textInputStyles,
+    placeholder,
     ...otherProps
 }) => {
     return (
@@ -22,7 +23,7 @@ const AppFormInput = ({
             <TextInput
                 style={[styles.textInput, textInputStyles]}
                 {...otherProps}
-                placeholder="Type something"
+                placeholder={placeholder}
             />
             {iconEnd && <FontAwesome style={styles.endIcon} name={iconEnd} />}
         </View>
@@ -31,7 +32,7 @@ const AppFormInput = ({
 const styles = StyleSheet.create({
     container: {
         alignSelf: "center",
-        backgroundColor: colors.light,
+        backgroundColor: colors.white,
         borderRadius: 25,
         flexDirection: "row",
         padding: 10,
