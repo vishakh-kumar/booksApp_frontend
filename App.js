@@ -1,6 +1,13 @@
 import React from "react";
 import { useState } from "react";
-import { StyleSheet, Text, TextInput, View, Image } from "react-native";
+import {
+    StyleSheet,
+    Text,
+    TextInput,
+    View,
+    Image,
+    ScrollView,
+} from "react-native";
 import { Formik } from "formik";
 import * as Yup from "yup";
 
@@ -12,6 +19,8 @@ import AppText from "./app/components/AppText";
 import colors from "./app/config/colors";
 import BookListDisplay from "./app/components/BookListDisplay";
 import AppFormInput from "./app/components/AppFormInput";
+import FooterBar from "./app/components/FooterBar";
+import BookShowScreen from "./app/screen/BookShowScreen";
 
 export default function App() {
     return <RenderBooks />;

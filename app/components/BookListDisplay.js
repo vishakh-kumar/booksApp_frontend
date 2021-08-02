@@ -10,7 +10,7 @@ const BookListDisplay = ({ title, image, author }) => {
         <Screen>
             <View style={styles.container}>
                 <View style={styles.bookContainer}>
-                    <Image style={styles.image} source={image} />
+                    <Image style={styles.image} source={{ uri: image }} />
                     <AppText style={styles.titleText}>{title}</AppText>
                     <AppText style={styles.authorText}>{author}</AppText>
                 </View>
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         height: 159,
     },
     bookContainer: {
-        marginVertical: 15,
+        marginVertical: 5,
     },
     titleText: {
         width: 100,
@@ -51,8 +51,6 @@ const styles = StyleSheet.create({
     },
     container: {
         flexDirection: "row",
-        // marginLeft: 5,
-        // marginRight: 5,
     },
 });
 

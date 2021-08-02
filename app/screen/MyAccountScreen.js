@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     screen: {
-        marginTop: 2,
+        marginTop: 20,
         backgroundColor: colors.light,
     },
 });

@@ -1,6 +1,5 @@
 import { create } from "apisauce";
 
-const api_key = "AIzaSyB8mFOr5Qfa4WvKlnZfSc5BziL3LTnNrLo";
 const apiClient = create({
     baseURL: `https://www.googleapis.com`,
 });

@@ -5,11 +5,12 @@ import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 import colors from "../config/colors";
 
 const AppFormInput = ({
+    containerStyles,
+    handleSubmit,
     iconFront,
     iconEnd,
-    containerStyles,
-    textInputStyles,
     placeholder,
+    textInputStyles,
     ...otherProps
 }) => {
     return (
@@ -21,9 +22,9 @@ const AppFormInput = ({
                 />
             )}
             <TextInput
+                placeholder={placeholder}
                 style={[styles.textInput, textInputStyles]}
                 {...otherProps}
-                placeholder={placeholder}
             />
             {iconEnd && <FontAwesome style={styles.endIcon} name={iconEnd} />}
         </View>
@@ -47,6 +48,7 @@ const styles = StyleSheet.create({
     },
     textInput: {
         fontSize: 20,
+        width: "90%",
     },
 });
 

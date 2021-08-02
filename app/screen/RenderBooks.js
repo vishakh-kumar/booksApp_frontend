@@ -1,86 +1,36 @@
 import React from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { StyleSheet, View } from "react-native";
 import { FlatGrid } from "react-native-super-grid";
 
+import listingBooksApi from "../api/listingBooksApi";
 import AppFormInput from "../components/AppFormInput";
 import BookListDisplay from "../components/BookListDisplay";
+import FooterBar from "../components/FooterBar";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
 
-const bookListing = [
-    {
-        id: 1,
-        name: "book1",
-        author: "jaggu prasad yadav",
-        year: 1998,
-        image: require("../assets/books_image/1.jpeg"),
-    },
-    {
-        id: 2,
-        name: "book2",
-        author: "jaggu prasad yadav",
-        year: 1998,
-        image: require("../assets/books_image/2.jpeg"),
-    },
-    {
-        id: 3,
-        name: "book3",
-        author: "jaggu prasad yadav",
-        year: 1998,
-        image: require("../assets/books_image/3.jpeg"),
-    },
-    {
-        id: 4,
-        name: "book4",
-        author: "jaggu prasad yadav",
-        year: 1998,
-        image: require("../assets/books_image/4.jpeg"),
-    },
-    {
-        id: 5,
-        name: "book5",
-        author: "jaggu prasad yadav",
-        year: 1998,
-        image: require("../assets/books_image/5.jpeg"),
-    },
-    {
-        id: 6,
-        name: "book6",
-        author: "jaggu prasad yadav",
-        year: 1998,
-        image: require("../assets/books_image/6.jpeg"),
-    },
-    {
-        id: 7,
-        name: "book7",
-        author: "jaggu prasad yadav",
-        year: 1998,
-        image: require("../assets/books_image/7.jpeg"),
-    },
-    {
-        id: 8,
-        name: "book8",
-        author: "jaggu prasad yadav",
-        year: 1998,
-        image: require("../assets/books_image/8.jpeg"),
-    },
-    {
-        id: 9,
-        name: "book9",
-        author: "jaggu prasad yadav",
-        year: 1998,
-        image: require("../assets/books_image/9.jpeg"),
-    },
-    {
-        id: 10,
-        name: "book10",
-        author: "jaggu prasad yadav",
-        year: 1998,
-        image: require("../assets/books_image/10.jpeg"),
-    },
-];
-
 const RenderBooks = () => {
+    const [listings, setListings] = useState([]);
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
+
+    useEffect(() => {
+        loadListings();
+    }, []);
+
+    const loadListings = async () => {
+        setLoading(true);
+        const response = await listingBooksApi.getBooks();
+        setLoading(false);
+        console.log(response.data.items);
+        if (!response.ok) return setError(true);
+
+        setError(false);
+        setListings(response.data.items);
+    };
+
     return (
         <Screen>
             <AppFormInput
@@ -93,13 +43,13 @@ const RenderBooks = () => {
                 <FlatGrid
                     itemDimension={115}
                     spacing={3}
-                    data={bookListing}
+                    data={listings}
                     keyExtractor={(book) => book.id.toString()}
                     renderItem={({ item }) => (
                         <BookListDisplay
-                            title={item.name}
-                            author={item.author}
-                            image={item.image}
+                            title={item.volumeInfo.title}
+                            author={item.volumeInfo.authors}
+                            image={item.volumeInfo.imageLinks.thumbnail}
                         />
                     )}
                 />
