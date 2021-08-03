@@ -2,11 +2,13 @@ import React from "react";
 import { StyleSheet, TextInput, View } from "react-native";
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 
+import IconButton from "../components/IconButton";
 import colors from "../config/colors";
 
 const AppFormInput = ({
-    containerStyles,
     handleSubmit,
+    containerStyles,
+    onChangeText,
     iconFront,
     iconEnd,
     placeholder,
@@ -16,17 +18,25 @@ const AppFormInput = ({
     return (
         <View style={[styles.container, containerStyles]}>
             {iconFront && (
-                <MaterialCommunityIcons
-                    style={styles.frontIcon}
-                    name={iconFront}
-                />
+                <IconButton onPress={handleSubmit}>
+                    <MaterialCommunityIcons
+                        style={styles.frontIcon}
+                        name={iconFront}
+                    />
+                </IconButton>
             )}
             <TextInput
+                onChangeText={onChangeText}
                 placeholder={placeholder}
                 style={[styles.textInput, textInputStyles]}
                 {...otherProps}
             />
-            {iconEnd && <FontAwesome style={styles.endIcon} name={iconEnd} />}
+
+            {iconEnd && (
+                <IconButton onPress={handleSubmit}>
+                    <FontAwesome style={styles.endIcon} name={iconEnd} />
+                </IconButton>
+            )}
         </View>
     );
 };

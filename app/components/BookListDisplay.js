@@ -1,21 +1,28 @@
 import React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
 import Screen from "./Screen";
 import AppText from "./AppText";
 import colors from "../config/colors";
 
-const BookListDisplay = ({ title, image, author }) => {
+const BookListDisplay = ({ title, image, author, onPress }) => {
     return (
-        <Screen>
+        <TouchableOpacity onPress={onPress}>
             <View style={styles.container}>
                 <View style={styles.bookContainer}>
-                    <Image style={styles.image} source={{ uri: image }} />
+                    {image ? (
+                        <Image style={styles.image} source={{ uri: image }} />
+                    ) : (
+                        <Image
+                            style={styles.image}
+                            source={require("../assets/noImage.png")}
+                        />
+                    )}
                     <AppText style={styles.titleText}>{title}</AppText>
                     <AppText style={styles.authorText}>{author}</AppText>
                 </View>
             </View>
-        </Screen>
+        </TouchableOpacity>
     );
 };
 
