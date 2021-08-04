@@ -18,6 +18,11 @@
 ![screenshot](app/assets/shot1.png)
 ![screenshot](app/assets/shot2.png)
 
+## QR to access app on EXPO GO
+
+-   In Expo Go make sure you are logged in.
+    ![screenshot](app/assets/qr.png)
+
 ## Future Enhancements
 
 -   Proper navigation
