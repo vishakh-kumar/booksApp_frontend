@@ -21,9 +21,14 @@ const ListItem = ({
         >
             <View style={styles.container}>
                 {IconComponent}
-                {image && <Image style={styles.image} source={image} />}
+                {image && (
+                    <Image style={styles.image} source={{ uri: image }} />
+                )}
+
                 <View style={styles.profileDetails}>
-                    <AppText style={[styles.title, style]}>{title}</AppText>
+                    {title && (
+                        <AppText style={[styles.title, style]}>{title}</AppText>
+                    )}
                     {subtitle && (
                         <AppText style={styles.subtitle}>{subtitle}</AppText>
                     )}

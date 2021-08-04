@@ -1,11 +1,14 @@
 import React from "react";
+import { useState } from "react";
 import {
     Image,
     View,
     Text,
     StyleSheet,
     Linking,
-    TouchableHighlight,
+    TouchableOpacity,
+    Modal,
+    Button,
 } from "react-native";
 import { FontAwesome, MaterialCommunityIcons } from "@expo/vector-icons";
 
@@ -14,13 +17,10 @@ import AppText from "../components/AppText";
 import IconButton from "../components/IconButton";
 import Screen from "../components/Screen";
 import colors from "../config/colors";
+import { set } from "react-native-reanimated";
 
-// need volumeInfo.averageRating in &&
-// volumeInfo.categories &&
-// volumeInfo.publishedDate
-// volumeInfo.infoLink this is for purchase so tie it with a button
-// volumeInfo.previewLink this is for reading
 const BookShowScreen = ({ route }) => {
+    const [modalVisible, setModalVisible] = useState(false);
     const book = route.params;
     // console.log(book);
     return (
@@ -68,18 +68,40 @@ const BookShowScreen = ({ route }) => {
                                     style={styles.icon}
                                     size={25}
                                     name="book-open-page-variant"
+                                    onPress={() =>
+                                        Linking.openURL(
+                                            book.volumeInfo.previewLink
+                                        )
+                                    }
                                 />
                                 <Text>Read Sample</Text>
                             </IconButton>
                         </View>
                     </View>
                 </View>
-                <TouchableHighlight onPress={"pressed"}>
+                <TouchableOpacity onPress={() => setModalVisible(true)}>
                     <AppText style={styles.description}>
                         {book.volumeInfo.description}
                     </AppText>
-                </TouchableHighlight>
+                </TouchableOpacity>
             </View>
+            <Modal visible={modalVisible} animationType="slide">
+                <Screen>
+                    <Button
+                        title="Close"
+                        onPress={() => setModalVisible(false)}
+                    />
+                    <AppText
+                        style={{
+                            fontSize: 15,
+                            marginHorizontal: 10,
+                            textAlign: "justify",
+                        }}
+                    >
+                        {book.volumeInfo.description}
+                    </AppText>
+                </Screen>
+            </Modal>
         </Screen>
     );
 };
@@ -108,7 +130,7 @@ const styles = StyleSheet.create({
     },
     icon: {
         alignSelf: "center",
-        marginVertical: 7,
+        marginVertical: 5,
     },
     iconContainer: {
         alignSelf: "flex-start",

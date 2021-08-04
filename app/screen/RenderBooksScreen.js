@@ -36,7 +36,7 @@ const RenderBooksScreen = ({ navigation }) => {
     //            API data & Call
     //======================================
     const api_key = "AIzaSyB8mFOr5Qfa4WvKlnZfSc5BziL3LTnNrLo";
-    const endpoint = `/books/v1/volumes?q=${searchBook}&key=${api_key}&maxResults=39`;
+    const endpoint = `/books/v1/volumes?q=${searchBook}&key=${api_key}&maxResults=39&printType=books`;
 
     const getBooks = () => client.get(endpoint);
 
@@ -52,10 +52,7 @@ const RenderBooksScreen = ({ navigation }) => {
 
     useEffect(() => {
         loadListings();
-        return () => {
-            setListings({});
-        };
-    }, []);
+    }, [searchBook]);
     //======================================
 
     return (
@@ -66,9 +63,6 @@ const RenderBooksScreen = ({ navigation }) => {
                 textInputStyles={styles.searchBoxText}
                 containerStyles={styles.containerStyles}
                 onChangeText={(text) => setSearchBook(text)}
-                // handleSubmit={() => (
-                //
-                // )}
             />
             <View style={styles.bookContainer}>
                 <FlatGrid
@@ -95,7 +89,7 @@ const RenderBooksScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
     containerStyles: {
         justifyContent: "space-between",
-        marginTop: 15,
+        marginTop: 60,
         width: "90%",
     },
     bookContainer: {

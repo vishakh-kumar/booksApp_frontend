@@ -7,14 +7,16 @@ import RenderBooksScreen from "../screen/RenderBooksScreen";
 const Stack = createNativeStackNavigator();
 
 const FeedNavigator = () => {
-    <Stack.Navigator>
-        <Stack.Screen
-            name="Books Display"
-            component={RenderBooksScreen}
-            options={{ headerShown: false }}
-        />
-        <Stack.Screen name="Books" component={BookShowScreen} />
-    </Stack.Navigator>;
+    return (
+        <Stack.Navigator>
+            <Stack.Screen
+                name="Books Display"
+                component={RenderBooksScreen}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen name="Books" component={BookShowScreen} />
+        </Stack.Navigator>
+    );
 };
 
 export default FeedNavigator;

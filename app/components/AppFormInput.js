@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         flexDirection: "row",
         padding: 10,
+        marginVertical: 5,
     },
     endIcon: {
         fontSize: 20,

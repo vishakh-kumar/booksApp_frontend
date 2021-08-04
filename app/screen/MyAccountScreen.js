@@ -1,5 +1,6 @@
 import React from "react";
 import { StyleSheet, View, FlatList } from "react-native";
+
 import Screen from "../components/Screen";
 import colors from "../config/colors";
 import ListItem from "../components/ListItem";
@@ -23,14 +24,16 @@ const menuItems = [
     },
 ];
 
-const MyAccountScreen = () => {
+const MyAccountScreen = ({ route }) => {
+    const data = route.params;
+    console.log(data);
     return (
         <Screen style={styles.screen}>
             <View style={styles.profileContainer}>
                 <ListItem
-                    image={require("../assets/IMG_8015.jpg")}
-                    title="name"
-                    subtitle="email"
+                    image={data && data.profileImage}
+                    title={data && data.name}
+                    subtitle={data && data.email}
                     style={{ fontSize: 25 }}
                 />
             </View>
